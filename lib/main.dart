@@ -11,11 +11,34 @@ class MyApp extends StatelessWidget {
       title: 'Row,Column and Image URL',
 
       home:Scaffold(
-        appBar: AppBar(title: Text('Basic List View'),),
-        body: getListView(),
+        appBar: AppBar(title: Text('Long List'),),
+        body: getLongListView(),
       ),debugShowCheckedModeBanner: false
     );
   }
+}
+
+List<String> getListElement(){
+  var items = List<String>.generate(1000, (counter) => 'Item $counter');
+  return items;
+}
+
+Widget getLongListView(){
+
+  var listItems = getListElement();
+
+  var listView = ListView.builder(
+      itemBuilder: (context,index){
+        return ListTile(
+          leading: Icon(Icons.arrow_right),
+          title: Text(listItems[index]),
+          onTap: (){
+            debugPrint('${listItems[index]} was tapped');
+          },
+        );
+      }
+  );
+  return listView;
 }
 
 Widget getListView(){
