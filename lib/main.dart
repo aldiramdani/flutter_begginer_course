@@ -13,9 +13,28 @@ class MyApp extends StatelessWidget {
       home:Scaffold(
         appBar: AppBar(title: Text('Long List'),),
         body: getLongListView(),
+        floatingActionButton: FloatingActionButton(
+            onPressed: (){
+              debugPrint('FAB Clicked');
+            },
+            child: Icon(Icons.add),
+            tooltip: 'Add One More Item',
+            ),
       ),debugShowCheckedModeBanner: false
     );
   }
+}
+
+void showSnackBar(BuildContext context,String item){
+  var snackBar = SnackBar(
+    content: Text('You Just tapped $item'),
+    action: SnackBarAction(
+        label: 'UNDO',
+        onPressed: (){
+          debugPrint('Undo Cliced');
+        }),
+  );
+  Scaffold.of(context).showSnackBar(snackBar);
 }
 
 List<String> getListElement(){
@@ -33,7 +52,7 @@ Widget getLongListView(){
           leading: Icon(Icons.arrow_right),
           title: Text(listItems[index]),
           onTap: (){
-            debugPrint('${listItems[index]} was tapped');
+            showSnackBar(context,listItems[index]);
           },
         );
       }
