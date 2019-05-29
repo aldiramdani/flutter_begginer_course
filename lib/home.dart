@@ -101,10 +101,9 @@ class FlighBookingButton extends StatelessWidget {
               ),
           ),
           elevation: 6.0,
-          onPressed: (){
-            //Action
-            bookFlight(context);
-          }),
+          //action
+          onPressed: () => bookFlight(context)
+          ),
     );
   }
 
@@ -113,11 +112,9 @@ class FlighBookingButton extends StatelessWidget {
       title: Text('Flight Booked Successfully'),
       content: Text('Have a pleasant flight'),
     );
-
+//
     showDialog(context: context,
-    builder: (BuildContext context){
-      return alertDialog;
-    }
+    builder: (BuildContext context) =>  alertDialog
     );
   }
 
